@@ -7,9 +7,11 @@ import { useLoginMutation , useLogoutMutation } from '../../redux/api/userApiSli
 import { logout } from '../../redux/features/auth/authSlice';
 import { Link } from 'react-router-dom';
 import './Navigation.css';
+import FavoritesCount from '../Products/FavoritesCount';
 
 const Navigation = () => {
-    const {userInfo} = useSelector(state => state.auth); // Corrected this line
+    const {userInfo} = useSelector(state => state.auth);
+    const {cartItems} = useSelector((state) => state.cart)
 
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [showSidebar, setShowSidebar] = useState(false);
@@ -54,11 +56,22 @@ const Navigation = () => {
                 </Link>
                 <Link to='/cart' className='flex items-center transition-transform transform hover:translate-x-2'>
                     <AiOutlineShoppingCart className='mr-2 mt-[3rem]' size={26} />
-                    <span className="hidden nav-item-name mt-[3rem]">CART</span>
+                    <span className="hidden nav-item-name mt-[3rem]">CART</span> {" "}
+                    
+                    <div className='absolute top-9'>
+                      {cartItems.length > 0 && (
+                        <span>
+                          <span className="px-1 py-0 text-sm text-white bg-pink-500 rounded-full">
+                            {cartItems.reduce((a,c) => a + c.qty ,0)}
+                          </span>
+                        </span>
+                      )}
+                    </div>
                 </Link>
                 <Link to='/favorite' className='flex items-center transition-transform transform hover:translate-x-2'>
                     <FaHeart className='mr-2 mt-[3rem]' size={26} />
-                    <span className="hidden nav-item-name mt-[3rem]">Favorite</span>
+                    <span className="hidden nav-item-name mt-[3rem]">Favorite</span> {" "}
+                    <FavoritesCount />
                 </Link>
             </div>
             <div className="relative">
