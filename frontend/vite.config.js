@@ -5,10 +5,12 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server: {
-    origin:"https://ecom-backend-cr0v.onrender.com",
     proxy: {
-      "/api/": "https://ecom-backend-cr0v.onrender.com",
-      "/uploads/": "https://ecom-backend-cr0v.onrender.com",
+      '/api': {
+        target: 'https://ecom-backend-cr0v.onrender.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
     }
   }
 })
