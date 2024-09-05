@@ -19,7 +19,7 @@ const Home = () => {
         <Loader />
       ) : isError ? (
         <Message variant="danger">
-          {isError?.data.message || isError.error}
+          Error!!
         </Message>
       ) : (
         <>
