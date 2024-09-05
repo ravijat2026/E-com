@@ -8,11 +8,11 @@ export default defineConfig({
     proxy: {
       "/api/": "http://localhost:5000",
       "/uploads/": "http://localhost:5000",
-    }
-  }
+    },
+  },
   build: {
     rollupOptions: {
-      external: ['mongoose'] // Exclude mongoose from the frontend build
-    }
-  }
+      external: ['mongoose'], // Exclude mongoose from the frontend build
+    },
+  },
 })
