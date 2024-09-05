@@ -6,11 +6,8 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': {
-        target: 'https://ecom-backend-cr0v.onrender.com',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
-      }
+      "/api/": "https://ecom-backend-cr0v.onrender.com",
+      "/uploads/": "https://ecom-backend-cr0v.onrender.com",
     }
   }
 })
